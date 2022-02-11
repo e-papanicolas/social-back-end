@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
+  before_action :render_not_found_response, only: [:me, :update, :destroy]
+
+  def index 
+    render json: User.all
+  end
+
+  
   
   def create 
-    # byebug
+    
     @user = User.create(user_params)
     if @user.valid?
       @token = encode_token({user_id: @user.id})
@@ -16,7 +23,23 @@ class UsersController < ApplicationController
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
+  def update 
+    user = find_user 
+    user.update!(user_params)
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
+
+  def destroy
+    user = find_user 
+    user.destroy 
+    head :no_content
+  end
+
   private
+
+  def find_user
+    User.find_by(id: params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :bio, :avatar)

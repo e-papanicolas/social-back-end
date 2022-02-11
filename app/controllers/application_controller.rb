@@ -37,5 +37,16 @@ class ApplicationController < ActionController::Base
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
+
+  def render_not_found_response
+    render json: { error: "User not found" }, status: :not_found
+  end
+
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors.full_messgaes }, status: :unprocessable_entity
+  end
+
+
+
 end
 
