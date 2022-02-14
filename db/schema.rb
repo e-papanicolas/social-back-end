@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
 ActiveRecord::Schema[7.0].define(version: 2022_02_14_142447) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2022_02_11_183348) do
->>>>>>> Stashed changes
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,12 +76,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_11_183348) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< Updated upstream
   add_foreign_key "chat_messages", "chats"
   add_foreign_key "chat_messages", "users"
-=======
   add_foreign_key "friends", "users"
->>>>>>> Stashed changes
   add_foreign_key "friendships", "friends"
   add_foreign_key "friendships", "users"
   add_foreign_key "likes", "posts"

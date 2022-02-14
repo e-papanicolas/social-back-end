@@ -8,7 +8,7 @@
 
 puts "Seeding, 1 sec..."
 
-5.times do 
+50.times do 
   User.create(
     username: "#{Faker::Superhero.prefix.downcase}-#{Faker::Food.dish.split[0].downcase}",
     password_digest: "password",
@@ -19,7 +19,7 @@ puts "Seeding, 1 sec..."
   )
 end
 
-10.times do
+50.times do
   Post.create(
   content: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
   user_id: rand(User.first.id..User.last.id)
@@ -35,5 +35,29 @@ Friendship.create(
   user_id: User.last.id,
   friend_id: User.second.id
 )
+
+5.times do
+  Chat.create(name: Faker::Emotion.noun)
+end
+
+10.times do 
+  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.first.id);
+end
+
+10.times do 
+  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.second.id, chat_id: Chat.first.id);
+end
+
+10.times do 
+  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.third.id, chat_id: Chat.second.id);
+end
+
+10.times do 
+  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.last.id, chat_id: Chat.second.id);
+end
+
+10.times do 
+  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.last.id);
+end
 
 puts "Seed finished!!"
