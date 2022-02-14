@@ -60,4 +60,11 @@ end
   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.last.id);
 end
 
+10.times do
+  Friendship.create(
+  user_id: User.first.id,
+  friend_id: rand(User.first.id..User.last.id)
+)
+end
+
 puts "Seed finished!!"
