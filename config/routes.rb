@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/login', to: 'auth#create'
   get '/me', to: 'users#me' #profile page
   mount ActionCable.server => '/cable'
+  patch '/update_bio/:id', to: 'users#bio_edit'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
