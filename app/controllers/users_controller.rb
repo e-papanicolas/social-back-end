@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
+  def bio_edit
+    user = find_user 
+    user.update!(update_bio)
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
+
   def destroy
     user = find_user 
     user.destroy 
@@ -44,5 +50,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :bio, :avatar)
   end
-  
+
+  def update_bio
+    params.permit(:id, :bio) 
+  end
+    
 end
