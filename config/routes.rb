@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # resources :likes
+  resources :chat_messages, only: [:index, :create, :show]
+  resources :chats, only: [:show, :create]
   resources :friendships, only: [:create, :update, :destroy]
   resources :friends, only: [:index, :show, :create]
   resources :posts, only: [:create, :index, :show, :update, :destroy]
