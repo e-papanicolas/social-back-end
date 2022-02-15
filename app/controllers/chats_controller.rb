@@ -2,17 +2,27 @@ class ChatsController < ApplicationController
 
 
 
-  def show 
-    chat = Chat.find(params[:name])
-    ActionCable.server.broadcast("chat_#{params[:name]}", chat)
-    render json: chat.to_json(include: [:chat_messages])
-  end
+  # def show 
+  #   chat = Chat.find_by(id: params[:id])
+  #   ActionCable.server.broadcast("chat_#{params[:name]}", chat)
+  #   render json: chat.to_json(include: [:chat_messages])
+  # end
 
   def create 
-    chat = Chat.find_or_create_by(params[:id])
-    # ActionCable.server.broadcast("chat_#{params[:name]}", chat)
-    render json: chat.to_json(include: [:chat_messages])
+    existing_chat = Chat.find_by(id: params[:id])
+
+    if existing_chat
+      render json: existing_chat.to_json(include: [:chat_messages])
+      ActionCable.server.broadcast("chat_#{params[:name]}", {chat: existing_chat, messages: existing_chat.chat_messages})
+    else
+      new_chat = Chat.create!(chat_params)
+      render json: new_chat.to_json(include: [:chat_messages])
+      ActionCable.server.broadcast("chat_#{params[:name]}", {chat: new_chat, messages: new_chat.chat_messages})
+    end
   end
+
+  
+  
 
 
   private
@@ -20,4 +30,5 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:name)
   end
+
 end
