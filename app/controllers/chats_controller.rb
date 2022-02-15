@@ -1,13 +1,5 @@
 class ChatsController < ApplicationController
 
-
-
-  # def show 
-  #   chat = Chat.find_by(id: params[:id])
-  #   ActionCable.server.broadcast("chat_#{params[:name]}", chat)
-  #   render json: chat.to_json(include: [:chat_messages])
-  # end
-
   def create 
     existing_chat = Chat.find_by(id: params[:id])
 
@@ -20,10 +12,6 @@ class ChatsController < ApplicationController
       ActionCable.server.broadcast("chat_#{params[:name]}", {chat: new_chat, messages: new_chat.chat_messages})
     end
   end
-
-  
-  
-
 
   private
 

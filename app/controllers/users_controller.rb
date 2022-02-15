@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   def index 
     render json: User.all
   end
-
-
   
   def create 
     
@@ -24,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update 
-    debugger
+    
     user = User.find_by(id: params[:id])
     user.update!(user_params)
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
@@ -37,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def add_friend
-    debugger
     user = find_user 
     user.update!(user_params)
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
@@ -56,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:username, :password, :email, :first_name, :last_name, :bio, :avatar, :friends)
+    params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :bio, :avatar, :friends)
   end
 
   def update_bio
