@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_16_152904) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_16_163253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_16_152904) do
     t.string "email"
     t.string "password_digest"
     t.string "bio"
-    t.string "avatar"
+    t.string "avatar", default: "https://brausermaimonides.org/wp-content/uploads/2014/12/default_profile_pic.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "friends", default: [], array: true
