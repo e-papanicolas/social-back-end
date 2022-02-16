@@ -1,6 +1,9 @@
 class ChatChannel < ApplicationCable::Channel
+
+
   def subscribed
-    stream_from "chat_#{params[:name]}"
+    stream_from "chat_#{params[:chat_id]}"
+   
   end
 
   def unsubscribed
@@ -8,16 +11,16 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast("chat_#{params[:name]}", data)
+    ActionCable.server.broadcast("chat_#{params[:chat_id]}", data)
   end
 
-  def create(options)
-    ChatMessage.create(
-        user_id:opts["user_id"],
-        chat_id: 1,
-        content: "#{options["content"]}"
-      )
-  end
+  # def create(options)
+  #   ChatMessage.create(
+  #       user_id:opts["user_id"],
+  #       chat_id: 1,
+  #       content: "#{options["content"]}"
+  #     )
+  # end
 
 
 end
