@@ -46,7 +46,5 @@ class ApplicationController < ActionController::Base
     render json: { errors: invalid.record.errors.full_messgaes }, status: :unprocessable_entity
   end
 
-
-
 end
 
