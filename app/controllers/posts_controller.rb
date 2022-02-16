@@ -22,8 +22,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    puts "params: #{params}"
-    @post.update(post_params)
+    puts "params: #{post_params}"
+    @post.update!(post_params)
     render json: @post
   end
 
@@ -40,6 +40,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.permit(:id, :content, :user_id, :likes)
+      params.permit(:id, :content, :user_id, :likes, post: [])
     end
 end
