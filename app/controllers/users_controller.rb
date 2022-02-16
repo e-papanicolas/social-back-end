@@ -36,8 +36,15 @@ class UsersController < ApplicationController
 
   def add_friend
     user = find_user 
-    user.update!(user_params)
-    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    if user.friends.include? params[:friends][-1]
+      friends = user.friends.map {|friend| User.find_by(id: friend) }
+      render json: friends
+    else
+      user.friends << params[:friends][-1]
+      user.update!(friends: user.friends)
+      friends = user.friends.map {|friend| User.find_by(id: friend) }
+    end
+      render json: friends, status: :accepted
   end
 
   def destroy
@@ -62,6 +69,10 @@ class UsersController < ApplicationController
 
   def update_bio
     params.permit(:id, :bio) 
+  end
+
+  def update_friends
+    params.permit(:id, friends: [])
   end
     
 end
