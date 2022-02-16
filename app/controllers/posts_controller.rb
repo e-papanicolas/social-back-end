@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :render_not_found_response, only: [:show, :update, :destroy]
+  before_action :render_not_found_response, only: [:show, :destroy]
   before_action :set_post, only: %i[ show update destroy ]
 
   # GET /posts
@@ -22,8 +22,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    puts "params: #{params}"
     @post.update(post_params)
-      render json: @post
+    render json: @post
   end
 
   # DELETE /posts/1
@@ -39,6 +40,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:content, :user_id)
+      params.permit(:id, :content, :user_id, :likes)
     end
 end
