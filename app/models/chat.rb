@@ -3,6 +3,7 @@ class Chat < ApplicationRecord
   belongs_to :recipient, foreign_key: :recipient_id, class_name: 'User'
 
   has_many :chat_messages, dependent: :destroy
+  has_many :users, through: :chat_messages
 
   validates_uniqueness_of :sender_id, scope: :recipient_id
 
