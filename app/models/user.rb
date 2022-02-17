@@ -3,8 +3,10 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: { case_sensitive: false }
 
-  has_many :posts
-  has_many :chat_messages
+
+  has_many :posts, dependent: :destroy
+  has_many :chat_messages, dependent: :destroy
   has_many :chats, through: :chat_messages
+
   
 end
