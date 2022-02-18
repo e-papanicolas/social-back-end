@@ -1,24 +1,10 @@
-# README
+# tweeter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A social media clone made with Ruby on Rails.
+Front end [here](https://github.com/e-papanicolas/social-front-end)
 
-Things you may want to cover:
+### creators
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [Eleni Papanicolas](https://github.com/e-papanicolas)
+- [Katherine Roll](https://github.com/katroll)
+- [Hung Le](https://github.com/The-Orange-Dot)
