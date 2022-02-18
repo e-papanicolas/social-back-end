@@ -5,5 +5,5 @@ class PostSerializer < ActiveModel::Serializer
     User.find_by(id: self.object.user_id)
   end
 
-  has_one :user
+  has_one :user, serializer: UserSerializer
 end

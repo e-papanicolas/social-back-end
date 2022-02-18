@@ -23,7 +23,7 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    chat = Chat.find_by(id: params[:chat_id])
+    chat = Chat.find_by(id: params[:id])
     chat.destroy
     head :no_content
   end

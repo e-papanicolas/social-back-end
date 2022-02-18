@@ -5,5 +5,5 @@ class UserSerializer < ActiveModel::Serializer
   def friends
     self.object.friends.map {|friend| User.find_by(id: friend)}
   end
-  has_many :posts
+  has_many :posts, serializer: PostSerializer
 end

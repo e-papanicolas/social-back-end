@@ -27,29 +27,29 @@ end
 end
 
 
-5.times do
-  Chat.create(name: Faker::Emotion.noun)
-end
+# 5.times do
+#   Chat.create(name: Faker::Emotion.noun)
+# end
 
-10.times do 
-  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.first.id);
-end
+# 10.times do 
+#   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.first.id);
+# end
 
-10.times do 
-  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.second.id, chat_id: Chat.first.id);
-end
+# 10.times do 
+#   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.second.id, chat_id: Chat.first.id);
+# end
 
-10.times do 
-  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.third.id, chat_id: Chat.second.id);
-end
+# 10.times do 
+#   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.third.id, chat_id: Chat.second.id);
+# end
 
-10.times do 
-  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.last.id, chat_id: Chat.second.id);
-end
+# 10.times do 
+#   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.last.id, chat_id: Chat.second.id);
+# end
 
-10.times do 
-  ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.last.id);
-end
+# 10.times do 
+#   ChatMessage.create(content: Faker::Lorem.sentences, user_id: User.first.id, chat_id: Chat.last.id);
+# end
 
 
 puts "Seed finished!!"
