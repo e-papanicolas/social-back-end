@@ -12,13 +12,4 @@ class ChatChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("chat_#{params[:chat_id]}", data)
   end
 
-  # def create(options)
-  #   ChatMessage.create(
-  #       user_id:opts["user_id"],
-  #       chat_id: 1,
-  #       content: "#{options["content"]}"
-  #     )
-  # end
-
-
 end

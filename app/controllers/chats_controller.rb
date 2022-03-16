@@ -7,8 +7,7 @@ class ChatsController < ApplicationController
 
   def show 
     user = User.find_by(id: params[:id])
-    chats = user.chats.uniq  
-
+    chats = user.chats.uniq 
     render json: chats
   end
 

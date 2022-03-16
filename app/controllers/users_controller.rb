@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
-  # before_action :render_not_found_response, only: [:me, :update, :destroy]
 
   def index 
     render json: User.all

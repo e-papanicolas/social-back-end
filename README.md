@@ -1,7 +1,7 @@
 # tweeter
 
-A social media clone made with Ruby on Rails.
-Front end [here](https://github.com/e-papanicolas/social-front-end)
+A clone of popular social media features made with Ruby on Rails.
+React front end [here](https://github.com/e-papanicolas/social-front-end)
 
 ### creators
 
