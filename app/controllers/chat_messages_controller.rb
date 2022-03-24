@@ -1,15 +1,16 @@
 class ChatMessagesController < ApplicationController
-  before_action do
-    @chat = Chat.find_by(id: params[:chat_id])
-  end
 
   def index
-    @messages = @chat.chat_messages 
+    chat = Chat.find_by(id: params[:chat_id])
+    messages = chat.chat_messages 
   end
 
   def create
     @message = ChatMessage.create!(message_params)
-    ActionCable.server.broadcast("chat_#{params[:chat_id]}", @message)
+    @chat = Chat.find(@message[:chat_id])
+    ChatChannel.broadcast_to(@chat, @message)
+    render json: @message
+    # ActionCable.server.broadcast("chat_#{params[:chat_id]}", @message)
   end
   
   private
